@@ -8,10 +8,10 @@ The board has clearly marked UART and JTAG connectors. I decided to start with U
 
 I began by identifying the pins using a multimeter. 
 
-Pin 1 = Vcc
-Pin 2 = RX
-Pin 3 = TX
-Pin 4 = Ground
+* Pin 1 = Vcc
+* Pin 2 = RX
+* Pin 3 = TX
+* Pin 4 = Ground
 
 I used a [Bus Pirate](https://www.adafruit.com/product/237) to attempt to interface with the UART connectors. I used the corresponding [UART guide](https://dangerousprototypes.com/blog/bus-pirate-manual/bus-pirate-uart-guide/) and made sure I had the correct pins in place. 
 
@@ -20,3 +20,14 @@ Using `screen /dev/ttyUSB0 256000`, I attempted to boot the router. This did not
 I tried a different breakout board, the [Adafruit FT232](https://www.adafruit.com/product/2264), and still had no luck. This leads me to believe that the UART interface is disabled. 
 
 Next steps: learn how to solder better and try the JTAG connectors. 
+
+I made a third and final attempt to get any kind of communication from the UART interface using a [Tigard](https://www.crowdsupply.com/securinghw/tigard) board, and it ended up working!
+
+![TigardBoard](./tigard.jpg)
+
+After connecting the UART pins to the corresponing Tigard pins and setting the target voltage to VTGT, I ran `sudo screen /dev/ttyUSB0 115200` and booted up the router. 
+
+I ended up with an OpenWrt shell running as root. 
+
+![admin](./admin.png)
+
